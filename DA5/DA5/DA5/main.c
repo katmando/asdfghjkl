@@ -1,11 +1,9 @@
 /*
  * DA5.c
  *
- * Created: 5/3/2019 5:21:31 PM
+ * Created: 5/7/2019 7:16:05 AM
  * Author : acate
  */ 
-
-
 
 #ifndef F_CPU
 #define F_CPU 16000000UL
@@ -149,4 +147,3 @@ void USART_putstring(char* StringPtr) {			// Function to break string into chars
 		StringPtr++;							// Increment pointer to next char array location
 	}
 }
-

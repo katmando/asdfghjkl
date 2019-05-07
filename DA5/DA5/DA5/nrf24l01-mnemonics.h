@@ -1,10 +1,17 @@
-/*
- * nrf24l01_mnemonics.h
+/*  Copyright (c) 2015 B. Sidhipong <bsidhipong@gmail.com>
  *
- * Created: 5/6/2019 5:30:13 PM
- *  Author: acate
- */ 
-
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 #ifndef __NORDIC_NRF24L01_RADIO_H__
 #define __NORDIC_NRF24L01_RADIO_H__
@@ -133,4 +140,4 @@
 #define EN_ACK_PAY		1
 #define EN_DYN_ACK		0
 
-#endif /* __NORDIC_NRF24L01_RADIO_H__ */MNEMONICS_H_ */
+#endif /* __NORDIC_NRF24L01_RADIO_H__ */
