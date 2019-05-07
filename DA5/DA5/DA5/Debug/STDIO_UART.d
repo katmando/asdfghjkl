@@ -1,0 +1,1 @@
+STDIO_UART.d STDIO_UART.o: .././STDIO_UART.c
