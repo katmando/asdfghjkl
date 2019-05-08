@@ -42,7 +42,7 @@ L1:	NOP				; 232*200*15
 	Pop R18			; Restore R18 from Stack
 	Pop R17			; Restore R17 from Stack
 	Pop R16			; Restore R16 from Stack
-	RET				; Complete Subroutine
+	RET				; Complete
 
 delay290ms:			; Delay Program '290ms'
 	Push R16		; Store R16 into Stack
@@ -66,6 +66,6 @@ M1:	NOP				; 232*200*10
 	DEC R18			; 10
 	BRNE M3			; 10
 	Pop R18			; Else, Restore R18 from Stack
-	Pop R17			; Restore R17 from Stack
-	Pop R16			; Restore R16 from Stack
-	RET				; Complete Subroutine
+	Pop R17			; Restore R17 
+	Pop R16			; Restore R16 
+	RET				
