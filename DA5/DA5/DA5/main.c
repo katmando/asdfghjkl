@@ -114,14 +114,14 @@ void print_config(void) {
 void adc_init(void) {
 	ADMUX = (0<<REFS1)|(1<<REFS0)|			// Reference Selection Bits, AVcc - External cap at AREF
 	(0<<ADLAR)|								// ADC Left Adjust Result
-	(0<<MUX3)|(1<<MUX2)|(0<<MUX1)|(1<<MUX0);// Analog Channel Selection Bits 'ADC5' (PC5)
+	(0<<MUX3)|(1<<MUX2)|(0<<MUX1)|(1<<MUX0);	
 	
 	ADCSRA = (1<<ADEN)|						// ADC Enable
 	(0<<ADSC)|								// ADC Start Conversion
 	(0<<ADATE)|								// ADC Auto Trigger Enable
 	(0<<ADIF)|								// ADC Interrupt Flag
 	(0<<ADIE)|								// ADC Interrupt Enable
-	(1<<ADPS2)|(0<<ADPS1)|(1<<ADPS0);		// ADC Prescaler Select Bits '32'
+	(1<<ADPS2)|(0<<ADPS1)|(1<<ADPS0);		
 }
 
 void read_adc(void) {
@@ -131,7 +131,7 @@ void read_adc(void) {
 		ADCSRA |= (1<<ADSC);			// If ADSC is high (ADC Start Conversion)...
 		while (ADCSRA & (1<<ADSC));		// Start the ADC Conversion
 		adc_temp += ADC;				// Store the analog value on of current adc_temp
-		_delay_ms(50);					// delay 50ms for sampling
+		_delay_ms(50);					
 	}
 	adc_temp = (adc_temp/4);			// Average of 4 samples taken into adc_temp
 }

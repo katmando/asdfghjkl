@@ -5,21 +5,20 @@
  * Author : acate
  */ 
 
-#define F_CPU 16000000UL	// Frequency of Xplained Mini (16MHz)
-#include <avr/io.h>			// Standard AVR Library
-#include <stdio.h>			// AVR library containing printf functions
-#include <avr/interrupt.h>	// AVR library containing interrupt functions
-#include <util/delay.h>		// AVR library containing _delay_ms() function
+#define F_CPU 16000000UL	
+#include <avr/io.h>			
+#include <stdio.h>			
+#include <avr/interrupt.h>	
+#include <util/delay.h>		
 
-#define BAUDRATE 9600										// Baudrate (bps)
-#define BAUD_PRESCALLER ((F_CPU / (BAUDRATE * 16UL)) - 1)	// Baudrate Prescaler
+#define BAUDRATE 9600										
+#define BAUD_PRESCALLER ((F_CPU / (BAUDRATE * 16UL)) - 1)	
 
-void Timer0_init(void);					// Initialize Timer1 properties
-void adc_init(void);					// Initialize Analog to Digital Converter
-void read_adc(void);					// Read value from ADC
+void Timer0_init(void);					
+void read_adc(void);					
 
-void USART_init(void);					// Initialize USART
-unsigned char USART_receive(void);		// Receive Serial data from UDR0
+void USART_init(void);					
+unsigned char USART_receive(void);	// Receive Serial data from UDR0
 void USART_send(unsigned char data);	// Send individual char in UDR0
 void USART_putstring(char* StringPtr);	// Break string into chars and send
 
@@ -38,12 +37,11 @@ int main(void) {
 	USART_putstring("Connected!\r\n");	// Pass 'Connected!' to function
 	_delay_ms(125);						// Wait a bit
 
-	while (1) {											// Infinite loop
-
-		read_adc();										// Read ADC Value
+	while (1) {											
+		read_adc();										
 		snprintf(outs,sizeof(outs),"%3f", adc_val);		// Store 'adc_val' into 'outs'
 		USART_putstring(outs);							// Pass 'outs' to function
-		_delay_ms(250);									// delay
+		_delay_ms(250);									
 
 		if (adc_val >= 242) {							// If 'adc_val >= 242'...
 			OCR0A = 242;								// Cap Duty Cycle at 95%
@@ -74,14 +72,12 @@ int main(void) {
 
 
 
-void Timer0_init(void) {					// Function to Initialize Timer0 properties
-	TCCR0A |= (1 << WGM01);					// Set fast PWM Mode
-	TCCR0B |= (1 << CS02) | (1 << CS00);	// Set prescaler to 256 and starts PWM
+void Timer0_init(void) {					
+	TCCR0A |= (1 << WGM01);				
+	TCCR0B |= (1 << CS02) | (1 << CS00);	
 }
 
-
-
-void USART_init(void) {							// Function to Initialize USART properties
+void USART_init(void) {							
 	UBRR0H = (uint8_t)(BAUD_PRESCALLER >> 8);	// Store Upper Baudrate values into UBRR0H
 	UBRR0L = (uint8_t)(BAUD_PRESCALLER);		// Store Lower Baudrate values into UBRR0L
 	UCSR0B = (1 << RXEN0) | (1 << TXEN0);		// Enable Receiver and Enable Transmitter
@@ -107,13 +103,13 @@ void USART_putstring(char* StringPtr) {			// Function to break string into chars
 
 
 void adc_init(void) {
-	DIDR0 = 0x3F;							// Disable Digital Input
+	DIDR0 = 0x3F;							
 
 	ADMUX = (0<<REFS1)|(1<<REFS0)|			// Reference Selection Bits, AVcc - External cap at AREF
 	(0<<ADLAR)|								// ADC Left Adjust Result for 10-bit result
 	(0<<MUX3)|(0<<MUX2)|(0<<MUX1)|(0<<MUX0);// Analog Channel Selection Bits 'ADC0' (PC0)
 	
-	ADCSRA = (1<<ADEN)|						// ADC Enable
+	ADCSRA = (1<<ADEN)|						
 	(0<<ADSC)|								// ADC Start Conversion
 	(0<<ADATE)|								// ADC Auto Trigger Enable
 	(0<<ADIF)|								// ADC Interrupt Flag
